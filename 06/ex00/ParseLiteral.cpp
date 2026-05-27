@@ -81,10 +81,27 @@ static bool isFloatLiteral(const std::string& s)
 	return (isDecimalLiteral(s.substr(0, s.length() - 1)));
 }
 
+//if single quote + one char + single quote
+//or if one of the 6 esc sequences
+static bool isCharLiteral(const std::string& s)
+{
+	if (s.length() == 3 && s[0] == '\'' && s[2] == '\'')
+		return (true);
+
+	if (s.length() == 4 && s[0] == '\'' && s[1] == '\\' && s[3] == '\'')
+	{
+		if (s[2] == 'n' || s[2] == 't' || s[2] == 'r'
+			|| s[2] == '0' || s[2] == '\\' || s[2] == '\'')
+			return (true);
+	}
+
+	return (false);
+}
+
 //
 LiteralType detectType(const std::string& literal)
 {
-	if (literal.length() == 3 && literal[0] == '\'' && literal[2] == '\'')
+	if (isCharLiteral(literal))
 		return (TYPE_CHAR);
 	if (isPseudoFloat(literal))
 		return (TYPE_FLOAT);
@@ -105,7 +122,28 @@ bool parseValue(const std::string& literal, LiteralType type, double& value)
 
 	if (type == TYPE_CHAR)
 	{
-		value = static_cast<double>(literal[1]);
+		if (literal.length() == 3)
+			value = static_cast<double>(literal[1]);
+		else if (literal.length() == 4 && literal[1] == '\\')
+		{
+			if (literal[2] == 'n')
+				value = '\n';
+			else if (literal[2] == 't')
+				value = '\t';
+			else if (literal[2] == 'r')
+				value = '\r';
+			else if (literal[2] == '0')
+				value = '\0';
+			else if (literal[2] == '\\')
+				value = '\\';
+			else if (literal[2] == '\'')
+				value = '\'';
+			else
+				return (false);
+		}
+		else
+			return (false);
+
 		return (true);
 	}
 
@@ -131,13 +169,6 @@ bool parseValue(const std::string& literal, LiteralType type, double& value)
 
 	if (errno == ERANGE && isInf(value))
 		return (false);
-
-	if (type == TYPE_FLOAT)
-	{
-		if (value < -FLT_MAX || value > FLT_MAX)
-			return (false);
-		value = static_cast<double>(static_cast<float>(value));
-	}
 
 	return (true);
 }

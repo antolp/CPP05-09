@@ -1,6 +1,7 @@
 #include "ScalarConverter.hpp"
 
 #include <iostream>
+#include <limits>
 
 // 42        // integer literal
 // 'a'       // character literal
@@ -27,6 +28,7 @@ void tests()
 	printTest("4.2");
 	printTest("a");
 	printTest("'a'");
+	printTest("'\n'");
 
 	std::cout << "\n === " << "weird decimal edge cases" << " ===" << std::endl;
 	printTest("0.f");
@@ -41,12 +43,15 @@ void tests()
 	printTest("32");
 	printTest("126");
 	printTest("127");
-	printTest("2147483647");    // int max
-	printTest("2147483648");    // int overflow
-	printTest("-2147483648");   // int min
-	printTest("-2147483649");   // int underflow
+	printTest("2147483647");	// int max
+	printTest("2147483648");	// int overflow
+	printTest("-2147483648");	// int min
+	printTest("-2147483649");	// int underflow
+	printTest("400000000000000000000000000000000000000.0f");	//float overflow
+	printTest("-400000000000000000000000000000000000000.0f");	//float underflow
 
-	std::cout << "\n === " << "Pseudo-literals / invalid" << " ===" << std::endl;
+
+	std::cout << "\n === " << "pseudo-literals and invalid" << " ===" << std::endl;
 	printTest("nanf");
 	printTest("+inf");
 	printTest("-inff");
@@ -66,9 +71,9 @@ int main(int argc, char** argv)
 		return 1;
 	}
 
-	// tests();
+	tests();
+
 	std::cout << argv[1] << std::endl;
 	ScalarConverter::convert(argv[1]);
-
 	return 0;
 }
