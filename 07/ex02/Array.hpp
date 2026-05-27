@@ -1,6 +1,9 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+# include <cstddef>
+# include <stdexcept>
+
 
 template <typename T>
 class Array
@@ -33,7 +36,10 @@ public:
 	{
 		if (this != &other)
 		{
-			T* newData = other._size ? new T[other._size]() : NULL;
+			T* newData = NULL;
+
+			if (other._size > 0)
+				newData = new T[other._size]();
 
 			for (unsigned int i = 0; i < other._size; i++)
 				newData[i] = other._data[i];
@@ -46,7 +52,6 @@ public:
 		return *this;
 	}
 
-	//destructor
 	~Array()
 	{
 		delete[] _data;
@@ -68,7 +73,6 @@ public:
 		return _data[index];
 	}
 
-	//size() returns the number of elements
 	unsigned int size() const
 	{
 		return _size;

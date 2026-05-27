@@ -1,49 +1,15 @@
-#include <iostream>
-#include "Array.hpp"
-
-// int main()
-// {
-// 	Array<int> empty;
-// 	Array<int> numbers(3);
-
-// 	numbers[0] = 42;
-// 	numbers[1] = 21;
-
-// 	std::cout << "size: " << numbers.size() << std::endl;
-// 	std::cout << numbers[0] << std::endl;
-
-// 	const Array<int> copy(numbers);
-// 	std::cout << copy[1] << std::endl;
-
-// 	try
-// 	{
-// 		std::cout << numbers[10] << std::endl;
-// 	}
-// 	catch (const std::exception& e)
-// 	{
-// 		std::cout << "Exception: " << e.what() << std::endl;
-// 	}
-
-// 	return 0;
-// }
-
-
 #include "Array.hpp"
 #include <iostream>
 #include <string>
 #include <exception>
 
-static void printTitle(std::string const& title)
-{
-	std::cout << "\n=== " << title << " ===" << std::endl;
-}
+
 
 int main(void)
 {
 	try
 	{
-		printTitle("Default constructor");
-
+		std::cout << "\n=== " << "Default constructor" << " ===" << std::endl;
 		Array<int> empty;
 		std::cout << "empty.size() = " << empty.size() << std::endl;
 
@@ -56,10 +22,9 @@ int main(void)
 			std::cout << "Accessing empty[0]: " << e.what() << std::endl;
 		}
 
-		printTitle("Int array");
 
+		std::cout << "\n=== " << "Int array" << " ===" << std::endl;
 		Array<int> numbers(5);
-
 		std::cout << "numbers.size() = " << numbers.size() << std::endl;
 
 		std::cout << "Default initialized values:" << std::endl;
@@ -73,17 +38,15 @@ int main(void)
 		for (unsigned int i = 0; i < numbers.size(); ++i)
 			std::cout << "numbers[" << i << "] = " << numbers[i] << std::endl;
 
-		printTitle("Copy constructor / deep copy");
 
+		std::cout << "\n=== " << "Copy constructor (deep copy)"  << " ===" << std::endl;
 		Array<int> copy(numbers);
-
 		numbers[0] = 999;
-
 		std::cout << "numbers[0] after modification = " << numbers[0] << std::endl;
 		std::cout << "copy[0] should remain old value = " << copy[0] << std::endl;
 
-		printTitle("Assignment operator / deep copy");
 
+		std::cout << "\n=== " << "Assignment operator (deep copy)" << " ===" << std::endl;
 		Array<int> assigned;
 		assigned = numbers;
 
@@ -92,15 +55,12 @@ int main(void)
 		std::cout << "numbers[1] after modification = " << numbers[1] << std::endl;
 		std::cout << "assigned[1] should remain old value = " << assigned[1] << std::endl;
 
-		printTitle("Self-assignment");
-
+		std::cout << "\n=== " << "Self-assignment" << " ===" << std::endl;
 		assigned = assigned;
-
 		for (unsigned int i = 0; i < assigned.size(); ++i)
 			std::cout << "assigned[" << i << "] = " << assigned[i] << std::endl;
 
-		printTitle("Const operator[]");
-
+		std::cout << "\n=== " << "Const operator[]" << " ===" << std::endl;
 		Array<int> constSource(3);
 		constSource[0] = 1;
 		constSource[1] = 2;
@@ -112,11 +72,10 @@ int main(void)
 		std::cout << "constArray[1] = " << constArray[1] << std::endl;
 		std::cout << "constArray[2] = " << constArray[2] << std::endl;
 
-		// This should NOT compile, which is good:
+		//this should not compile :
 		// constArray[0] = 42;
 
-		printTitle("String array");
-
+		std::cout << "\n=== " << "String array" << " ===" << std::endl;
 		Array<std::string> words(3);
 
 		words[0] = "hello";
@@ -131,10 +90,9 @@ int main(void)
 		words[1] = "modified";
 
 		std::cout << "words[1] after modification = " << words[1] << std::endl;
-		std::cout << "wordsCopy[1] should remain old value = " << wordsCopy[1] << std::endl;
+		std::cout << "wordsCopy[1] remains old value = " << wordsCopy[1] << std::endl;
 
-		printTitle("Out of bounds");
-
+		std::cout << "\n=== " << "Out of bounds" << " ===" << std::endl;
 		try
 		{
 			std::cout << numbers[999] << std::endl;
