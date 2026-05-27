@@ -70,7 +70,7 @@ static bool isDecimalLiteral(const std::string& s)
 			return (false);
 		i++;
 	}
-	return (dot && digitBeforeDot && digitAfterDot);
+	return (dot && (digitBeforeDot || digitAfterDot));
 }
 
 //if f at the end, test if decimal without the trailing f

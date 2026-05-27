@@ -2,7 +2,7 @@ CXX      ?= c++
 CXXFLAGS  = -Wall -Wextra -Werror -std=c++98 -I.
 
 NAME = ex00
-SRC  = main.cpp ScalarConverter.cpp ParseLitteral.cpp
+SRC  = main.cpp ScalarConverter.cpp ParseLiteral.cpp
 OBJ  = $(SRC:.cpp=.o)
 
 all: $(NAME)
