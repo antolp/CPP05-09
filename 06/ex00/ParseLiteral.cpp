@@ -1,5 +1,5 @@
 #include "ScalarConverter.hpp"
-#include "ParseLitteral.hpp"
+#include "ParseLiteral.hpp"
 
 bool isNan(double value)
 {

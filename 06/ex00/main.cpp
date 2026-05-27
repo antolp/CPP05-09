@@ -10,34 +10,49 @@
 
 static void printTest(const std::string& literal)
 {
-	std::cout << "\n>>> ScalarConverter::convert(\"" << literal << "\")" << std::endl;
+	std::cout << "\n\tScalarConverter::convert(\"" << literal << "\")" << std::endl;
 	ScalarConverter::convert(literal);
 }
 
 void tests()
 {
-	std::cout << " === " << "Classic types" << " ===" << std::endl;
+	std::cout << " === " << "subject tests" << " ===" << std::endl;
+	printTest("0");
+	printTest("nan");
+	printTest("42.0f");
+
+	std::cout << "\n === " << "classic types" << " ===" << std::endl;
 	printTest("100");
 	printTest("4.2f");
 	printTest("4.2");
 	printTest("a");
 	printTest("'a'");
 
-	std::cout << "\n === " << "Limits / tricky cases" << " ===" << std::endl;
-	printTest("0");
+	std::cout << "\n === " << "weird decimal edge cases" << " ===" << std::endl;
+	printTest("0.f");
+	printTest(".0f");
+	printTest("42.f");
+	printTest(".42f");
+	printTest("0.");
+	printTest(".0");
+
+	std::cout << "\n === " << "limits" << " ===" << std::endl;
 	printTest("31");
 	printTest("32");
-	printTest("2147483647");
+	printTest("126");
+	printTest("127");
+	printTest("2147483647");    // int max
 	printTest("2147483648");    // int overflow
 	printTest("-2147483648");   // int min
-	printTest("-2147483649");
+	printTest("-2147483649");   // int underflow
 
 	std::cout << "\n === " << "Pseudo-literals / invalid" << " ===" << std::endl;
-	printTest("nan");
 	printTest("nanf");
 	printTest("+inf");
 	printTest("-inff");
-	printTest("'\n'");
+	printTest("42ff");
+	printTest(".f");
+	printTest("abc");
 
 	std::cout << std::endl;
 	return ;
