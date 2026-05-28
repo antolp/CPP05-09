@@ -2,10 +2,10 @@ CXX      ?= c++
 CXXFLAGS  = -Wall -Wextra -Werror -std=c++98 -I.
 
 NAME = ex02
-SRC  = main.cpp 
+SRC  = main.cpp main.cpp Base.cpp
 OBJ  = $(SRC:.cpp=.o)
 
-all: $(NAME)
+all: $(NAME)	
 
 $(NAME): $(OBJ)
 	$(CXX) $(CXXFLAGS) $^ -o $@
