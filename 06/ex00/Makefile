@@ -1,7 +1,7 @@
 CXX      ?= c++
 CXXFLAGS  = -Wall -Wextra -Werror -std=c++98 -I.
 
-NAME = ex00
+NAME = convert
 SRC  = main.cpp ScalarConverter.cpp ParseLiteral.cpp
 OBJ  = $(SRC:.cpp=.o)
 

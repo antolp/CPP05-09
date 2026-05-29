@@ -76,14 +76,14 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& bureaucrat)
 
 void Bureaucrat::incrementGrade()
 {
-	checkGrade(_grade - 1);
-	_grade--;
+	checkGrade(this->_grade - 1);
+	this->_grade--;
 }
 
 void Bureaucrat::decrementGrade()
 {
-	checkGrade(_grade + 1);
-	_grade++;
+	checkGrade(this->_grade + 1);
+	this->_grade++;
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw()
