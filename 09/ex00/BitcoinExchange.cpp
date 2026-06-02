@@ -51,6 +51,7 @@ bool BitcoinExchange::isLeapYear(int year)
 //and if each date is coherent
 bool BitcoinExchange::isValidDate(const std::string &date)
 {
+	int year;
 	int month;
 	int day;
 	int daysInMonth[12] = {
@@ -69,11 +70,15 @@ bool BitcoinExchange::isValidDate(const std::string &date)
 			return (false);
 	}
 
+	year = std::atoi(date.substr(0, 4).c_str());
 	month = std::atoi(date.substr(5, 2).c_str());
 	day = std::atoi(date.substr(8, 2).c_str());
 
 	if (month < 1 || month > 12 || day < 1)
 		return (false);
+
+	if (month == 2 && isLeapYear(year))
+		daysInMonth[1] = 29;
 
 	return (day <= daysInMonth[month - 1]);
 }
