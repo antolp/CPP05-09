@@ -116,7 +116,9 @@ bool BitcoinExchange::parseValue(const std::string &s, double &value)
 	return (*end == '\0');
 }
 
-//iterate and finds date, if no lower bound at found upper date, not date available
+//finds the first date in map that is not lower than the requested date
+//if the exact date is not found use the closest lower date
+//if no lower date throw error
 double BitcoinExchange::getPriceForDate(const std::string &date) const
 {
 	std::map<std::string, double>::const_iterator it;
@@ -161,7 +163,6 @@ void BitcoinExchange::loadDatabase(const std::string &filename)
 			this->_prices[date] = price;
 	}
 }
-
 
 void BitcoinExchange::processInput(const std::string &filename) const
 {
