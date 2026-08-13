@@ -1,5 +1,4 @@
 #include "ShrubberyCreationForm.hpp"
-#include "Bureaucrat.hpp"
 #include <iostream>
 #include <fstream>
 
@@ -41,11 +40,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 
 void ShrubberyCreationForm::execute(const Bureaucrat& executor) const
 {
-	if (getIsSigned() == false)
-		throw AForm::FormNotSignedException();
-
-	if (executor.getGrade() > getGradeToExecute())
-		throw AForm::GradeTooLowException();
+	AForm::execute(executor);
 
 	std::ofstream file((this->_target + "_shrubbery").c_str());
 
