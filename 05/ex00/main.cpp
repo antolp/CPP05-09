@@ -17,6 +17,13 @@ int main()
 
         bob.incrementGrade();
         std::cout << bob << std::endl;
+
+        std::cout << "(increment too much : )" << std::endl;
+        bob.incrementGrade();
+        bob.incrementGrade();
+        bob.incrementGrade();
+        //here should destruct then throw
+        std::cout << bob << std::endl;
     }
     catch (std::exception& e)
     {
