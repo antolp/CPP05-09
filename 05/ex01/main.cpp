@@ -19,7 +19,7 @@ int main()
     std::cout << "\n=== Invalid form: grade too high ===" << std::endl;
     try
     {
-        Form form("Impossible form", 0, 25);
+        Form form("Impossible", 0, 25);
         std::cout << form << std::endl;
     }
     catch (std::exception& e)
@@ -42,7 +42,7 @@ int main()
     try
     {
         Bureaucrat boss("Boss", 20);
-        Form       form("Important form", 50, 25);
+        Form       form("Important", 50, 25);
 
         std::cout << boss << std::endl;
         std::cout << form << std::endl;
@@ -60,7 +60,7 @@ int main()
     try
     {
         Bureaucrat intern("Intern", 100);
-        Form       form("Secret form", 50, 25);
+        Form       form("Secret", 50, 25);
 
         std::cout << intern << std::endl;
         std::cout << form << std::endl;

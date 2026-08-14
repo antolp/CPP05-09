@@ -41,7 +41,7 @@ int main()
     }
 
     printTitle("Create presidential pardon form");
-    form = intern.makeForm("presidential pardon", "Arthur Dent");
+    form = intern.makeForm("presidential pardon", "Michel");
     if (form)
     {
         boss.signForm(*form);
