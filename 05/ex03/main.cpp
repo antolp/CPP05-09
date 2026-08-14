@@ -8,62 +8,71 @@
 
 static void printTitle(const std::string& title)
 {
-    std::cout << "\n=== " << title << " ===" << std::endl;
+	std::cout << "\n=== " << title << " ===" << std::endl;
 }
 
 int main()
 {
-    std::srand(std::time(NULL));
 
-    Intern      intern;
-    Bureaucrat  boss("Boss", 1);
-    Bureaucrat  weak("Weak", 150);
-    AForm*      form;
+	{
+		Intern someRandomIntern;
+		AForm* rrf;
+  		Bureaucrat boss("Boss", 1);
 
-    printTitle("Create shrubbery form");
-    form = intern.makeForm("shrubbery creation", "home");
-    if (form)
-    {
-        boss.signForm(*form);
-        boss.executeForm(*form);
-        delete form;
-    }
+		rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+		boss.signForm(*rrf);
+		boss.executeForm(*rrf);
+	}
 
-    printTitle("Create robotomy form");
-    form = intern.makeForm("robotomy request", "Bender");
-    if (form)
-    {
-        boss.signForm(*form);
-        boss.executeForm(*form);
-        boss.executeForm(*form);
-        boss.executeForm(*form);
-        delete form;
-    }
+	Intern      intern;
+	Bureaucrat  boss("Boss", 1);
+	Bureaucrat  weak("Weak", 150);
+	AForm*      form;
 
-    printTitle("Create presidential pardon form");
-    form = intern.makeForm("presidential pardon", "Michel");
-    if (form)
-    {
-        boss.signForm(*form);
-        boss.executeForm(*form);
-        delete form;
-    }
+	printTitle("Create shrubbery form");
+	form = intern.makeForm("shrubbery creation", "home");
+	if (form)
+	{
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		delete form;
+	}
 
-    printTitle("Unknown form name");
-    form = intern.makeForm("coffee request", "Bob");
-    if (form)
-    {
-        delete form;
-    }
+	printTitle("Create robotomy form");
+	form = intern.makeForm("robotomy request", "Bender");
+	if (form)
+	{
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		boss.executeForm(*form);
+		boss.executeForm(*form);
+		delete form;
+	}
 
-    printTitle("Intern creates form, weak bureaucrat fails");
-    form = intern.makeForm("presidential pardon", "Ford Prefect");
-    if (form)
-    {
-        weak.signForm(*form);
-        weak.executeForm(*form);
-        delete form;
-    }
+	printTitle("Create presidential pardon form");
+	form = intern.makeForm("presidential pardon", "Michel");
+	if (form)
+	{
+		boss.signForm(*form);
+		boss.executeForm(*form);
+		delete form;
+	}
 
-    return 0;
+	printTitle("Unknown form name");
+	form = intern.makeForm("coffee request", "Bob");
+	if (form)
+	{
+		delete form;
+	}
+
+	printTitle("Intern creates form, weak bureaucrat fails");
+	form = intern.makeForm("presidential pardon", "Ford Prefect");
+	if (form)
+	{
+		weak.signForm(*form);
+		weak.executeForm(*form);
+		delete form;
+	}
+
+	return 0;
 }

@@ -77,11 +77,6 @@ void AForm::beSigned(const Bureaucrat& bureaucrat)
 	this->_isSigned = true;
 }
 
-void AForm::execute(const Bureaucrat& executor) const
-{
-
-}
-
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return "grade is too high";
