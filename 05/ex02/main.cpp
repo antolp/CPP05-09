@@ -17,8 +17,8 @@ int main()
     try
     {
         ShrubberyCreationForm shrub("home");
-        RobotomyRequestForm robot("Bender");
-        PresidentialPardonForm pardon("Arthur");
+        RobotomyRequestForm robot("Clanck");
+        PresidentialPardonForm pardon("Michel");
 
         std::cout << shrub << std::endl;
         std::cout << robot << std::endl;
@@ -71,7 +71,7 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    printTitle("Shrubbery success");
+    printTitle("shrubbery success");
     try
     {
         Bureaucrat boss("Boss", 1);
@@ -116,7 +116,7 @@ int main()
         std::cout << e.what() << std::endl;
     }
 
-    printTitle("AForm pointers polymorphism");
+    printTitle("AForm");
     try
     {
         Bureaucrat boss("Boss", 1);

@@ -42,6 +42,6 @@ void PresidentialPardonForm::execute(const Bureaucrat& executor) const
 	AForm::execute(executor);
 
 	std::cout << this->_target
-			  << " has been pardoned by the President"
+			  << " has been pardoned by Zaphod Beeblebrox"
 			  << std::endl;
 }
