@@ -13,7 +13,7 @@ static void printTitle(const std::string& title)
 
 int main()
 {
-    printTitle("Create concrete forms");
+    printTitle("create forms + insertion operator");
     try
     {
         ShrubberyCreationForm shrub("home");

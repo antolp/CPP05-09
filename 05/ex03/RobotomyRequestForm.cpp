@@ -1,4 +1,5 @@
 #include "RobotomyRequestForm.hpp"
+#include "Bureaucrat.hpp"
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -41,7 +42,11 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 void RobotomyRequestForm::execute(const Bureaucrat& executor) const
 {
-	AForm::execute(executor);
+	if (getIsSigned() == false)
+		throw AForm::FormNotSignedException();
+
+	if (executor.getGrade() > getGradeToExecute())
+		throw AForm::GradeTooLowException();
 
 	static bool seeded = false;
 
