@@ -50,7 +50,8 @@ unsigned int Span::shortestSpan(void) const
 	for (std::size_t i = 1; i < sorted.size(); ++i)
 	{
 		unsigned int diff =
-			sorted[i] - sorted[i - 1];
+			static_cast<unsigned int>(sorted[i]) - 
+			static_cast<unsigned int>(sorted[i - 1]);
 
 		if (diff < shortest)
 			shortest = diff;
@@ -71,7 +72,7 @@ unsigned int Span::longestSpan(void) const
 	std::vector<int>::const_iterator maxIt =
 		std::max_element(_numbers.begin(), _numbers.end());
 
-	return *maxIt - *minIt;
+	return static_cast<unsigned int>(*maxIt) - static_cast<unsigned int>(*minIt);
 }
 
 const char* Span::SpanFullException::what(void) const throw()
