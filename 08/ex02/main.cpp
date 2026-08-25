@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stack>
+#include <vector>
 #include <list>
 #include "MutantStack.hpp"
 
@@ -127,7 +128,7 @@ int main()
 		std::cout << "normalStack size: " << normalStack.size() << std::endl;
 	}
 
-	{
+ 	{
 		printTitle("Compare with std::list");
 
 		std::list<int> list;
@@ -161,5 +162,26 @@ int main()
 		printConstMutantStack(constStack);
 	}
 
+	{
+    	printTitle("Custom underlying container");
+
+    	MutantStack<int, std::vector<int> > first;
+    	MutantStack<int, std::vector<int> > second;
+
+    	first.push(10);
+    	first.push(20);
+    	first.push(30);
+
+    	second = first;
+
+    	MutantStack<int, std::vector<int> >::iterator it = second.begin();
+    	MutantStack<int, std::vector<int> >::iterator ite = second.end();
+
+    	while (it != ite)
+    	{
+    	    std::cout << *it << std::endl;
+    	    ++it;
+    	}
+	}
 	return 0;
 }
