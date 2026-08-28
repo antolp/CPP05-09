@@ -1,0 +1,39 @@
+FordJohnson(sequence):
+
+	if size <= 1:
+		return
+
+	1. Pair elements.
+
+	   For every pair:
+			compare the two
+			b = smaller
+			a = larger
+
+	   Keep possible odd stray element.
+
+	2. Recursively FordJohnson-sort all the a's.
+
+	   Keep each b attached to its corresponding a.
+
+	3. Build main chain:
+
+		   b1, a1, a2, a3, ...
+
+	4. Remaining b's form the pend.
+
+	5. Insert pending values with binary insertion,
+	   but only search up to their associated a.
+
+	   Use Jacobsthal-derived order:
+
+			b3, b2,
+			b5, b4,
+			b11, b10, ..., b6,
+			b21, b20, ..., b12,
+			...
+
+	6. If the sequence ends in the middle of a Jacobsthal block,
+		insert the available b's from that partial block in descending order.
+
+	result = main chain
